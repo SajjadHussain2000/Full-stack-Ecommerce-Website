@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/seller.css">
+    
+</head>
+
+<body>
+    <img src="img/loader.gif" class="loader" alt="">
+
+    <div class="alert-box">
+        <img src="img/error.png" class="alert-img" alt="">
+        <p class="alert-msg">Error message</p>
+    </div>
+
+    <img src="img/dark-logo.png" class="logo" alt="">
+
+    <!---become seller element-->
+    <div class="become-seller hide">
+        <p class="heading">become a seller</p>
+        <p class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum recusandae perferendis possimus et
+            impedit. Expedita, laboriosam placeat odit rem, neque praesentium consectetur excepturi non ad tempora
+            assumenda earum. A totam quo placeat beatae veniam illo minus blanditiis quaerat, sint fugit eos nesciunt
+            optio possimus saepe ea qui molestias iusto repudiandae dolores deserunt! Accusamus distinctio eius impedit.
+            Vel necessitatibus doloremque rerum praesentium! Distinctio ullam perspiciatis id quasi natus esse quod
+            repellendus, laudantium recusandae? Corrupti, ea libero. Nesciunt facere, quisquam, debitis quos, nostrum
+            excepturi hic exercitationem quas tenetur suscipit voluptatibus sed illo recusandae minus. Odit aperiam
+            inventore dolores mollitia fuga ut? Velit.</p>
+            <button class="btn" id="apply-btn">apply for seller account</button>
+    </div>
+
+    <!--apply form-->
+    <div class="apply-form hide">
+        <input type="text" id="business-name" placeholder="business name/ company name/ shop name">
+        <textarea id="business-add" placeholder="address"></textarea>
+        <textarea id="about" placeholder="about"></textarea>
+        <input type="text" id="number" placeholder="number">
+        <input type="checkbox" checked class="checkbox" id="terms-and-condition">
+        <label for="terms-and-condition">agree to our <a href="">terms and conditions</a></label>
+        <br>
+        <input type="checkbox" class="checkbox" checked id="legitInfo">
+        <label for="notification">all information is legit</label>
+        <button class="submit-btn" id="apply-form-btn">apply</button>
+    </div>
+
+    <!--product list-->
+    <div class="product-listing hide">
+        <div class="add-product">
+            <p class="add-product-title">add product</p>
+            <button class="btn" onclick="location.href='/add-product'">add product</button>
+        </div>
+        <img src="img/no-products.png" class="no-product-image hide" alt="">
+
+        <!--delete alert-->
+        <div class="delete-alert">
+            <div class="alert">
+                <button class="close-btn"><img src="img/close.png" alt=""></button>
+                <img src="img/delete-warning.png"  class="delete-svg" alt="">
+                <p class="text">are you sure? you want to delete this product</p>
+                <button class="delete-btn">delete</button>
+            </div>
+        </div>
+
+        <!--cards-->
+        <div class="product-container">
+            <!-- <div class="product-card">
+                <div class="product-image">
+                    <span class="tag">Draft</span>
+                    <img src="img/card1.png" class="product-thumb" alt="">
+                    <button class="card-action-btn edit-btn">
+                        <img src="img/edit.png" alt="">
+                    </button>
+                    <button class="card-action-btn open-btn">
+                        <img src="img/open.png" alt="">
+                    </button>
+                    <button class="card-action-btn delete-popup-btn">
+                        <img src="img/delete.png" alt="">
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">brand</h2>
+                    <p class="product-short-des">a short line about the cloth</p>
+                    <span class="price">$20</span>
+                    <span class="actual-price">$50</span>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+    <script src="js/token.js"></script>
+    <script src="js/createProduct.js"></script>
+    <script src="js/seller.js"></script>
+</body>
+
+</html>
