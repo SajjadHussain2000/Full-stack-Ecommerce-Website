@@ -3,6 +3,7 @@ const express = require('express');
 const admin = require('firebase-admin');
 const bcrypt = require('bcrypt');
 const path = require('path');
+const nodemailer = require('nodemailer');
 
 //firebase
 let serviceAccount = require("./ecom-website-f440c-firebase-adminsdk-g3pp1-c378e91d9d.json");
@@ -276,6 +277,100 @@ app.get('/products/:id', (req,res) => {
 //search route
 app.get('/search/:key', (req,res) => {
     res.sendFile(path.join(staticPath, "search.html"));
+})
+
+//cart route
+app.get('/cart', (req,res) => {
+    res.sendFile(path.join(staticPath, "cart.html"));
+})
+
+//checkout route
+app.get('/checkout', (req,res) => {
+    res.sendFile(path.join(staticPath, "checkout.html"));
+})
+
+app.post('/order', (req,res) => {
+    const {order,email,add} = req.body;
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        }
+    })
+    const mailOption = {
+        from: 'sh267002@gmail.com',
+        to: email,
+        subject: 'Clothing : Order Placed',
+        hrml: `
+                <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+
+            <style>
+                body{
+                    min-height: 90vh;
+                    background: #f5f5f5;
+                    font-family: sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .heading{
+                    text-align: center;
+                    font-size: 40px;
+                    width: 50%;
+                    display: block;
+                    line-height: 50px;
+                    margin: 30px auto 60px;
+                    text-transform: capitalize;
+                }
+
+                .heading{
+                    font-weight: 300;
+                }
+
+                .btn{
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 5px;
+                    background: #3f3f3f;
+                    color: #fff;
+                    display: block;
+                    margin: auto;
+                    font-size: 18px;
+                    text-transform: capitalize;
+                }
+
+
+            </style>
+        </head>
+        <body>
+            
+            <div>
+                <h1 class="heading">dear ${email.split('@')[0]}, <span>your order is Successfully placed</span></h1>
+                <button class="btn">check status</button>
+            </div>
+        </body>
+        </html>
+        `
+    }
+    let docName = email + Math.floor(Math.random() * 1234847589475);
+    db.collection('order').doc(docName).set(req.body)
+    .then(data => {
+       transporter.sendMail(mailOption,(err,info) => {
+           if(err){
+               res.json({'alert':'opps! its seems like some err occured. Try again'})
+           }else{
+               res.json({'alert':'your order is placed'});
+           }
+       })
+    })
 })
 
 //404 route

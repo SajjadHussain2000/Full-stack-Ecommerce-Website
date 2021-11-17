@@ -20,7 +20,7 @@ const createNav = () => {
             </div>
         </div>
         <uln class="links-container">
-            <li class="link-items"><a href="#" class="links">home</a></li>
+            <li class="link-items"><a href="index.html" class="links">home</a></li>
             <li class="link-items"><a href="#" class="links">women</a></li>
             <li class="link-items"><a href="#" class="links">men</a></li>
             <li class="link-items"><a href="#" class="links">kids</a></li>
