@@ -29,10 +29,7 @@ body{
     margin: 0 auto 50px;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"],
+input:not(.search-box, .checkbox, .size-checkbox, input[type="file"]),
 textarea{
     display: block;
     width: 300px;

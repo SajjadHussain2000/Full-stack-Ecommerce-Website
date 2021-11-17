@@ -58,7 +58,7 @@ const createProductCards = (data,parent) => {
                 <div class="product-card">
                         <div class="product-image">
                             <span class="discount-tag">${data[i].discount}% off</span>
-                            <img src="${data[i].image[0]}" class="product-thumb" alt="">
+                            <img src="${data[i].images[0]}" class="product-thumb" alt="">
                         </div>
                         <div class="product-info" onclick="location.href = '/products/${data[i].id}'">
                             <h2 class="product-brand">${data[i].name}</h2>
@@ -76,4 +76,25 @@ const createProductCards = (data,parent) => {
     } else{
         return start + middle + end;
     }
+}
+
+
+const add_product_to_cart_or_wishlist = (type,product) => {
+    let data = JSON.parse(localStorage.getItem(type));
+    if(data == null){
+        data=[];
+    }
+
+    product = {
+        item: 1,
+        name: product.name,
+        sellPrice: product.sellPrice,
+        size: size || null,
+        shortDes: product.shortDes,
+        image: product.images[0]
+    }
+
+    data.push(product);
+    localStorage.setItem(type, JSON.stringify(data));
+    return 'added';
 }

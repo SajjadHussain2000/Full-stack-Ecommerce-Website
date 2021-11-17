@@ -17,12 +17,14 @@ productImages.forEach((item,i) => {
 
 const sizeBtns = document.querySelectorAll('.size-radio-btn');
 let checkedBtn=0;
+let size;
 
-sizeBtns.forEach((item,i) => {
-    item.addEventListener('click', () => {
-        sizeBtns[checkedBtn].classList.remove('check');
-        item.classList.add('check');
-        checkedBtn = i;
+sizeBtns.forEach((item,i) => { //looping through each button
+    item.addEventListener('click', () => {  //adding click event to each
+        sizeBtns[checkedBtn].classList.remove('check');  //removing check class from
+        item.classList.add('check'); //adding check class to clicked button
+        checkedBtn = i; //updating the variable
+        size=item.innerHTML;
     })
 })
 
@@ -64,6 +66,17 @@ const setData = (data) => {
     sellPrice.innerHTML = `${data.sellPrice}`;
     actualPrice.innerHTML = `${data.actualPrice}`;
     discount.innerHTML = `( ${data.discount}% off)`;
+
+    //whishlist and cart btn
+    const wishlistBtn = document.querySelector('.wishlist-btn');
+    wishlistBtn.addEventListener('click', () => {
+        wishlistBtn.innerHTML = add_product_to_cart_or_wishlist('wishlist',data);
+    })
+
+    const cartBtn = document.querySelector('.cart-btn');
+    cartBtn.addEventListener('click', () => {
+        cartBtn.innerHTML = add_product_to_cart_or_wishlist('cart',data);
+    })
 
 }
 
